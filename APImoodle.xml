@@ -30,8 +30,6 @@
 					maxlength="1024"
 		            size="1024"
 		        />
-
-
 				<field
 		            name="URL2"
 			        type="text"	
@@ -40,7 +38,30 @@
 		            description="defina sua URL"
 		            maxlength="1024"
 		            size="1024"
-	            />				
+	            />		
+
+
+				<field
+					name="shortcode1"
+				    type="text"
+					default="{meushortcode1}"
+					label="shortcode1"
+					description="defica o seu shortcode "
+					maxlength="1024"
+		            size="1024"
+		        />
+				
+				<field
+					name="shortcode2"
+				    type="text"
+					default="{meushortcode2}"
+					label="shortcode2"
+					description="defina o seu shortcode"
+					maxlength="1024"
+		            size="1024"
+		        />
+
+
 			</fieldset>
 		</fields>
 	</config>
