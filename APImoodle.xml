@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.1" type="plugin" group="content">
 
-    <name>API Joomla-Moodle</name>
+    <name>Joomla Moodle Bridge</name>
     <author>Miguel Domiciano Vieira</author>
     <creationDate>2023-10-31</creationDate>
     <!--<copyright>Codigo Livre</copyright>-->
