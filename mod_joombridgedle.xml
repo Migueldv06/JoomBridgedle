@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.0" client="site" method="upgrade">
+
+    <name>mod_joombridgedle</name>
+    <author>Miguel Domiciano Vieira</author>
+	<creationDate>2024-08-27</creationDate>
+    <!--<copyright>Codigo Livre</copyright>-->
+    <!--<license>GPLv2</license>-->
+    <authorEmail>brasilgameplay06@gmail.com</authorEmail>
+    <authorUrl>https://www.instagram.com/miguel_dom_vieira/</authorUrl>
+    <version>1.0</version>
+    <description>Cria conexões de APIs entre o joomla e o moodle</description>
+    <files>
+        <filename module="mod_joombridgedle">mod_joombridgedle.php</filename>
+		<filename>helper.php</filename>
+		<filename>codes.php</filename>
+		<folder>tmpl</folder>
+    </files>
+    <languages>
+        <language tag="pt-br">pt-BR.plg_content_api.ini</language>
+        <language tag="pt-br">pt-BR.plg_content_api.sys.ini</language>
+    </languages>
+<install>
+    <sql>
+         <file driver="mysql" charset="utf8">sql/mysql/install.mysql.utf8.sql</file>
+    </sql>
+</install>
+
+<uninstall>
+    <sql>
+         <file driver="mysql" charset="utf8">sql/mysql/uninstall.mysql.utf8.sql</file>
+	</sql>
+</uninstall>
+<update> 
+    <schemas>
+        <schemapath type="mysql">sql/mysql/updates</schemapath>
+    </schemas>
+</update>
+<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="function"
+					type="list" 
+					label="Função"
+					description="defina a função">
+					<option value="function1">Função conta alunos</option>
+            		<option value="function2">Função conta horas de vídeos</option>
+					<option value="function3">Função conta slides</option>
+					<option value="function4">Função conta hacks</option>
+				</field>
+
+				<field
+					name="URL"
+				    type="text"
+					default="sua URL"
+					label="URL"
+					description="defina sua URL"
+					maxlength="1024"
+		            size="1024"
+		        />	
+			</fieldset>
+		</fields>
+	</config>
+</extension>
