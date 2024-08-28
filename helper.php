@@ -1,40 +1,46 @@
 <?php
+
+require_once __DIR__ . '/cache.php';
+
 class ModJoomBridgedleHelper
 {
-    public static function getData($params)
+    public static function getData($params, $module)
     {
-        /*
-        get cache_date from DB se menor que parans-> tempo de cache
-        cache = false
-        if ($cache = true){
-            sql= select data from #__joombridget_cache
-            return data from DB
-        }
+        $cacheKey = 'joombridgedle_' . $params->get('function');
+        $moduleId = $module->id;
 
-        ou db foi cacheado , data cacheado é hoje cache = true pega data da DB
-        data cacheado não é hoje cache true manda valor pra DB 
-        */
-        if ($cache = false){
-        include_once dirname(__FILE__) . '/codes.php';
-        $function = $params->get('function');
-        $result = null;
+        // Verifica se existe cache
+        $cache = JoomBridgedleCacheHelper::getCache($moduleId, $cacheKey);
 
-        switch ($function) {
-            case 'function1':
-                $result = ModJoomBridgedleCodes::getAlunos($params);
-                break;
-            case 'function2':
-                $result = ModJoomBridgedleCodes::getVideos($params);
-                break;
-            case 'function3':
-                $result = ModJoomBridgedleCodes::getSlides($params);
-                break;
-            case 'function4':
-                $result = ModJoomBridgedleCodes::getHacks($params);
-                break;
-        }
+        if ($cache !== false) {
+            // Retorna o cache se disponível
+            return $cache;
+        } else {
+            // Gera o resultado se o cache não estiver disponível
+            include_once dirname(__FILE__) . '/codes.php';
+            $function = $params->get('function');
+            $result = null;
 
-        return $result;
+            switch ($function) {
+                case 'function1':
+                    $result = ModJoomBridgedleCodes::getAlunos($params);
+                    break;
+                case 'function2':
+                    $result = ModJoomBridgedleCodes::getVideos($params);
+                    break;
+                case 'function3':
+                    $result = ModJoomBridgedleCodes::getSlides($params);
+                    break;
+                case 'function4':
+                    $result = ModJoomBridgedleCodes::getHacks($params);
+                    break;
+            }
+
+            // Define o tempo de expiração do cache em minutos (por exemplo, 60 minutos)
+            $expiryTime = 60;
+            JoomBridgedleCacheHelper::setCache($moduleId, $cacheKey, $result, $expiryTime);
+
+            return $result;
         }
     }
 }

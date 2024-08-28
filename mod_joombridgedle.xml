@@ -13,8 +13,10 @@
     <files>
         <filename module="mod_joombridgedle">mod_joombridgedle.php</filename>
 		<filename>helper.php</filename>
+		<filename>cache.php</filename>
 		<filename>codes.php</filename>
 		<folder>tmpl</folder>
+		<folder>sql</folder>
     </files>
     <languages>
         <language tag="pt-br">pt-BR.plg_content_api.ini</language>
@@ -23,17 +25,19 @@
 <install>
     <sql>
          <file driver="mysql" charset="utf8">sql/mysql/install.mysql.utf8.sql</file>
+		 <file driver="sqlazure" charset="utf8">sql/sqlazure/install.sqlazure.utf8.sql</file>
     </sql>
 </install>
-
 <uninstall>
     <sql>
          <file driver="mysql" charset="utf8">sql/mysql/uninstall.mysql.utf8.sql</file>
+		 <file driver="sqlazure" charset="utf8">sql/sqlazure/uninstall.sqlazure.utf8.sql</file>
 	</sql>
 </uninstall>
 <update> 
     <schemas>
         <schemapath type="mysql">sql/mysql/updates</schemapath>
+		<schemapath type="sqlazure">sql/sqlazure/updates</schemapath> 
     </schemas>
 </update>
 <config>
