@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="2.0" client="site" method="upgrade">
+<extension type="module" version="3.0" client="site" method="upgrade">
 
     <name>mod_joombridgedle</name>
     <author>Miguel Domiciano Vieira</author>
@@ -13,23 +13,9 @@
     <files>
         <filename module="mod_joombridgedle">mod_joombridgedle.php</filename>
 		<filename>helper.php</filename>
-		<filename>cache.php</filename>
 		<filename>codes.php</filename>
 		<folder>tmpl</folder>
-		<folder>sql</folder>
     </files>
-<install>
-    <sql>
-         <file driver="mysqli" charset="utf8">sql/mysql/install.mysql.utf8.sql</file>
-		 <file driver="mysql" charset="utf8">sql/mysql/install.mysql.utf8.sql</file>
-    </sql>
-</install>
-<uninstall>
-    <sql>
-         <file driver="mysqli" charset="utf8">sql/mysql/uninstall.mysql.utf8.sql</file>
-		 <file driver="mysql" charset="utf8">sql/mysql/uninstall.mysql.utf8.sql</file>
-	</sql>
-</uninstall>
 <config>
 		<fields name="params">
 			<fieldset name="basic">
@@ -42,6 +28,7 @@
             		<option value="function2">Função conta horas de vídeos</option>
 					<option value="function3">Função conta slides</option>
 					<option value="function4">Função conta hacks</option>
+					<option value="function5">Função geral</option> 
 				</field>
 				<field
 					name="cache"
@@ -54,7 +41,7 @@
 		        />	
 				<field
 					name="URL"
-				    type="text"
+					type="text"
 					default="sua URL"
 					label="URL"
 					description="defina sua URL"

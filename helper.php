@@ -1,39 +1,33 @@
 <?php
-require_once dirname(__FILE__) . '/cache.php';
 class ModJoomBridgedleHelper
 {
     public static function getData($params, $module)
     {
-        $expiryTime = $params->get('cache');
-        $key = 'joombridgedle_' . $params->get('function');
-        $moduleId = $module->id;
-
-        // Verifica se tem cache
-        $cache = JoomBridgedleCacheHelper::getCache($moduleId, $key, $expiryTime);
-
-        if ($cache !== false) {
-            return $cache;
-        } else {
+        $cookie_id = $module->id;
+        if (!isset($_COOKIE[$cookie_id])) {
             include_once dirname(__FILE__) . '/codes.php';
             $function = $params->get('function');
-            $result = null;
-
             switch ($function) {
                 case 'function1':
-                    $result = ModJoomBridgedleCodes::getAlunos($params);
+                    $cookie_value = ModJoomBridgedleCodes::getAlunos($params);
                     break;
                 case 'function2':
-                    $result = ModJoomBridgedleCodes::getVideos($params);
+                    $cookie_value = ModJoomBridgedleCodes::getVideos($params);
                     break;
                 case 'function3':
-                    $result = ModJoomBridgedleCodes::getSlides($params);
+                    $cookie_value = ModJoomBridgedleCodes::getSlides($params);
                     break;
                 case 'function4':
-                    $result = ModJoomBridgedleCodes::getHacks($params);
+                    $cookie_value = ModJoomBridgedleCodes::getHacks($params);
+                    break;
+                case 'function5':
+                    $cookie_value = ModJoomBridgedleCodes::getGeral($params);
                     break;
             }
-            JoomBridgedleCacheHelper::setCache($moduleId, $key, $result);
-            return $result;
+            setcookie($cookie_id, $cookie_value, time() + $params->get("cache"));
+            return $cookie_value;
+        } else {
+            return $_COOKIE[$cookie_id];
         }
     }
 }
