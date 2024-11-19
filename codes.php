@@ -3,7 +3,7 @@
 class ModJoomBridgedleCodes
 {
 
-    public static function getAlunos($params)
+    public static function function1($params)
     {
         $URL = $params->get('URL');
         $ch = curl_init($URL);
@@ -13,7 +13,7 @@ class ModJoomBridgedleCodes
         $result = count($resultadoURL);
         return $result;
     }
-    public static function getVideos($params)
+    public static function function2($params)
     {
         $segundosTotal = 0;
         $nomearquivos_mp4 = array();
@@ -51,7 +51,7 @@ class ModJoomBridgedleCodes
         $result = "$horasTotal:$minutosTotal";
         return $result;
     }
-    public static function getSlides($params)
+    public static function function3($params)
     {
         $contaArquivos = 0;
         $totalSlides = 0;
@@ -87,7 +87,7 @@ class ModJoomBridgedleCodes
         $result = "$contaArquivos Arquivos de apresentação com $totalSlides slides.";
         return $result;
     }
-    public static function getHacks($params)
+    public static function function4($params)
     {
         $totalHacks = 0;
         $nomearquivos_pdf = array();
@@ -121,7 +121,7 @@ class ModJoomBridgedleCodes
         $result = "$totalHacks";
         return $result;
     }
-    public static function getGeral($params)
+    public static function function5($params)
     {
         $nomearquivos_pdf = array();
         $nomearquivos_mp4 = array();
@@ -143,11 +143,9 @@ class ModJoomBridgedleCodes
                             $mimetype = $content->mimetype;
                             if ($mimetype === "video/mp4") {
                                 array_push($nomearquivos_mp4, "$moduloname\n");
-                            }
-                            if ($mimetype === "application/pdf") {
+                            } elseif ($mimetype === "application/pdf") {
                                 array_push($nomearquivos_pdf, "$moduloname\n");
-                            }
-                            if ($mimetype !== "video/mp4" && $mimetype !== "application/pdf") {
+                            } elseif ($mimetype !== "video/mp4" && $mimetype !== "application/pdf") {
                                 $totalDownloads++;
                             }
                         }
